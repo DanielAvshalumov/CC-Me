@@ -1,5 +1,6 @@
 import { CssBaseline } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
+import Header from './components/header'
 
 export const metadata = {
   title: 'Next.js',
@@ -16,7 +17,9 @@ export default function RootLayout({
       <AppRouterCacheProvider>
         <CssBaseline />
         <body>
-          {children}
+          <Header>
+            {children}
+          </Header>
         </body>
       </AppRouterCacheProvider>
     </html>
