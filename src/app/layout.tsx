@@ -17,9 +17,8 @@ export default function RootLayout({
       <AppRouterCacheProvider>
         <CssBaseline />
         <body>
-          <Header>
+          <Header />
             {children}
-          </Header>
         </body>
       </AppRouterCacheProvider>
     </html>

@@ -16,6 +16,7 @@ const options : String[] = [
     
     return (
       <Autocomplete
+        fullWidth={true}
         open={open}
         options={options}
         getOptionLabel={(option) => `Search ${value} in ${option} `}
@@ -28,9 +29,9 @@ const options : String[] = [
         }}
         onClose={() => setOpen(false)}
         renderInput={(params) => (
-          <TextField {...params} label="Search..." variant="outlined" onChange={(e) => {setValue(e.target.value)}}/>
+          <TextField {...params} label="Search..." variant="outlined" onChange={(e) => {setValue(e.target.value)}} />
         )}
-        style={{ width: 300 }} // Adjust the width as needed
+        style={{ width: '45%', marginLeft: '50px' }} // Adjust the width as needed
       />
     );
   };
