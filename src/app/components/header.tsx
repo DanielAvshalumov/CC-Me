@@ -22,9 +22,7 @@ export default function Header(props : any) {
                                 <Button>Contracts</Button>      
                             </Grid2>
                         </Grid2>
-
                         <SearchField />
-                        
                         <Button sx={{ marginLeft:'auto' }}>Log In</Button>
                     </Toolbar>
                 </AppBar>
