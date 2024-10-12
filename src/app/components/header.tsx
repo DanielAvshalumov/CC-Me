@@ -13,7 +13,6 @@ export default function Header(props : any) {
                 <AppBar position='static' sx={{ backgroundColor:'beige', boxShadow:'none', display:'flex', marginTop:'20px'}}>
                     <Toolbar>
                         <Typography variant="h3" sx={{ color:'black', marginRight:'30px'}}>CC'Me</Typography>
-                        {/* <TextField placeholder='Search' sx={{marginRight:'50px' }}/> */}
                         <Grid2 container spacing={3}>
                             <Grid2>
                                 <Button>Contractors</Button>
