@@ -35,7 +35,7 @@ const Hero = (props:any) => {
 
 
     return(
-        <Box display="flex" flexDirection="column" alignItems='center'>
+        <Box display="flex" flexDirection="column" alignItems='center' mb={4}>
             <Box display="flex" justifyContent="center" mt={5}>
                 <IconButton onClick={(e) => {
                     setIndex((nextIndex) => {
