@@ -20,11 +20,61 @@ const Main = () => {
                             </Typography>
                         }
                         secondary={
-                        <Typography>
-                            <b>Company</b> - {`${job.company}\t`}<b>Views</b> - {`${job.views}`}<br />Location - {`${job.location}\t`}CC's - ${job.ccs}
-                        </Typography>}
+                        <>
+                            <b>Company</b> - {`${job.company}`}<br /><b>Views</b> - {`${job.views}`}<br /><b>Location</b> - {`${job.location}`}<br/><b>CC's</b> - ${job.ccs}
+                        </>}
                     />
                 </ListItem>
+    )
+
+    const contractorElement = jsonData.Contractors.map((contractor: {
+        "name": string;
+        "field": string[];
+        "rating": number;
+        "jobs" : number;
+    }) => 
+        <ListItem>
+            <ListItemAvatar>
+                <Avatar />
+            </ListItemAvatar>
+            <ListItemText
+                primary={
+                    <Typography variant="h6">
+                        {`${contractor.name}`}
+                    </Typography>
+                }
+                secondary={
+                    <>
+                        <b>Field</b> - {`${contractor.field}`}<br /><b>Rating</b> - {`${contractor.rating}`}<br /><b>Jobs</b> - {`${contractor.jobs}`}
+                    </>
+                }
+            />
+        </ListItem>
+    )
+
+    const comapnyElement = jsonData.Companies.map((company: {
+        "name": string;
+        "field": string;
+        "headquarters": string;
+        "jobs": number;
+    }) => 
+        <ListItem>
+            <ListItemAvatar>
+                <Avatar />
+            </ListItemAvatar>
+            <ListItemText
+                primary={
+                    <Typography variant="h6">
+                        {`${company.name}`}
+                    </Typography>
+                }
+                secondary={
+                    <>
+                        <b>Field</b> - {`${company.field}`}<br /><b>field</b> - {`${company.field}`}<br /><b>Headquarters</b> - {`${company.headquarters}`}<br /><b>Jobs</b> - {`${company.jobs}`}
+                    </>
+                }
+            />
+        </ListItem>
     )
 
     return(
@@ -39,9 +89,15 @@ const Main = () => {
                 </Box>
                 <Box display='flex' flexDirection='column'>
                     <Typography variant="h5">Contractors</Typography>
+                    <List>
+                        {contractorElement}
+                    </List>
                 </Box>
                 <Box display='flex' flexDirection='column'>
                     <Typography variant="h5">Companies</Typography>
+                    <List>
+                        {comapnyElement}
+                    </List>
                 </Box>
             </Box>
         </Box>
