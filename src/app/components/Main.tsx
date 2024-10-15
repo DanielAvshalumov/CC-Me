@@ -1,5 +1,10 @@
-import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemText, Typography } from "@mui/material";
-import jsonData from "../public/json_samples/home_recents.json"
+import { Avatar, Box, List, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
+import jsonData from "../public/json_samples/home_recents.json";
+import contractorAvatar from "../public/images/avatar/avatar-1300331_1280.png";
+import constructionAvatar from "../public/images/avatar/construction-3384689_1280.jpg";
+import siteAvatar from "../public/images/avatar/11316980.png";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+
 
 const Main = () => {
 
@@ -11,7 +16,7 @@ const Main = () => {
         ccs: number;}) => 
                 <ListItem>
                     <ListItemAvatar>
-                        <Avatar alt='construction worker' src='../public/images/avatar/construction-3384689_1280.jpg' />
+                        <Avatar alt='construction worker' src={constructionAvatar.src} />
                     </ListItemAvatar>
                     <ListItemText
                         primary={
@@ -33,23 +38,28 @@ const Main = () => {
         "rating": number;
         "jobs" : number;
     }) => 
-        <ListItem>
-            <ListItemAvatar>
-                <Avatar />
-            </ListItemAvatar>
-            <ListItemText
-                primary={
-                    <Typography variant="h6">
-                        {`${contractor.name}`}
-                    </Typography>
-                }
-                secondary={
-                    <>
-                        <b>Field</b> - {`${contractor.field}`}<br /><b>Rating</b> - {`${contractor.rating}`}<br /><b>Jobs</b> - {`${contractor.jobs}`}
-                    </>
-                }
-            />
-        </ListItem>
+        <ListItemButton>
+            <ListItem>
+                <ListItemAvatar>
+                    <Avatar alt='contractor' src={contractorAvatar.src}/>
+                </ListItemAvatar>
+                <ListItemText
+                    primary={
+                        <Typography variant="h6">
+                            {`${contractor.name}`}
+                        </Typography>
+                    }
+                    secondary={
+                        <>
+                            <b>Field</b> - {`${contractor.field}`}<br /><b>Rating</b> - {`${contractor.rating}`}<br /><b>Jobs</b> - {`${contractor.jobs}`}
+                        </>
+                    }
+                />
+            </ListItem>
+            <ListItemIcon style={{marginLeft:'auto'}}>
+                    <NavigateNextIcon />
+            </ListItemIcon>
+        </ListItemButton>
     )
 
     const comapnyElement = jsonData.Companies.map((company: {
@@ -60,7 +70,7 @@ const Main = () => {
     }) => 
         <ListItem>
             <ListItemAvatar>
-                <Avatar />
+                <Avatar alt='construction site' src={siteAvatar.src}/>
             </ListItemAvatar>
             <ListItemText
                 primary={
@@ -79,8 +89,8 @@ const Main = () => {
 
     return(
         <Box display='flex' flexDirection='column' alignItems='center'>
-            <Typography variant='h4' mb={3}>Recents</Typography>
-            <Box display='flex' justifyContent='space-evenly' sx={{width:'100%'}} >
+            <Typography variant='h4' mb={3}>Most Recents</Typography>
+            <Box display='flex' justifyContent='space-between' sx={{width:'85%'}} >
                 <Box display='flex' flexDirection='column'>
                     <Typography variant="h5">Jobs</Typography>
                     <List>

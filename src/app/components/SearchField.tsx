@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 
 
 
-const options : String[] = [
+const options : string[] = [
     'Contractors',
     'Contracts',
     'Profiles'
