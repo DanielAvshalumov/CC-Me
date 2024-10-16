@@ -13,7 +13,8 @@ const Main = () => {
         company: string;
         location: string;
         views: number;
-        ccs: number;}) => 
+        ccs: number;}) =>
+            <ListItemButton> 
                 <ListItem>
                     <ListItemAvatar>
                         <Avatar alt='construction worker' src={constructionAvatar.src} />
@@ -29,7 +30,11 @@ const Main = () => {
                             <b>Company</b> - {`${job.company}`}<br /><b>Views</b> - {`${job.views}`}<br /><b>Location</b> - {`${job.location}`}<br/><b>CC's</b> - ${job.ccs}
                         </>}
                     />
+                    <ListItemIcon style={{marginLeft:'auto'}}>
+                        <NavigateNextIcon />
+                    </ListItemIcon>
                 </ListItem>
+            </ListItemButton>
     )
 
     const contractorElement = jsonData.Contractors.map((contractor: {
@@ -68,23 +73,28 @@ const Main = () => {
         "headquarters": string;
         "jobs": number;
     }) => 
-        <ListItem>
-            <ListItemAvatar>
-                <Avatar alt='construction site' src={siteAvatar.src}/>
-            </ListItemAvatar>
-            <ListItemText
-                primary={
-                    <Typography variant="h6">
-                        {`${company.name}`}
-                    </Typography>
-                }
-                secondary={
-                    <>
-                        <b>Field</b> - {`${company.field}`}<br /><b>field</b> - {`${company.field}`}<br /><b>Headquarters</b> - {`${company.headquarters}`}<br /><b>Jobs</b> - {`${company.jobs}`}
-                    </>
-                }
-            />
-        </ListItem>
+        <ListItemButton>
+            <ListItem>
+                <ListItemAvatar>
+                    <Avatar alt='construction site' src={siteAvatar.src}/>
+                </ListItemAvatar>
+                <ListItemText
+                    primary={
+                        <Typography variant="h6">
+                            {`${company.name}`}
+                        </Typography>
+                    }
+                    secondary={
+                        <>
+                            <b>Field</b> - {`${company.field}`}<br /><b>field</b> - {`${company.field}`}<br /><b>Headquarters</b> - {`${company.headquarters}`}<br /><b>Jobs</b> - {`${company.jobs}`}
+                        </>
+                    }  
+                />
+                <ListItemIcon style={{marginLeft:'auto'}}>
+                    <NavigateNextIcon />
+                </ListItemIcon>
+            </ListItem>
+        </ListItemButton>
     )
 
     return(

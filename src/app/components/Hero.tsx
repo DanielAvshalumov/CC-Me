@@ -5,8 +5,8 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useState } from "react";
 
 interface HeroBanner {
-    imageURL : string,
-    imageCaption : string
+    imageURL : string;
+    imageCaption : string;
 }
 
 const Hero = (props:any) => {
