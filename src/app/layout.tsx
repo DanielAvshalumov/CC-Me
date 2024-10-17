@@ -19,7 +19,6 @@ export default function RootLayout({
         <CssBaseline />
         <body>
           <Header />
-          <Hero />
             {children}
         </body>
       </AppRouterCacheProvider>

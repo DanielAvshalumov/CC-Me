@@ -12,13 +12,15 @@ export default function Header(props : any) {
         <Container maxWidth="lg">
                 <AppBar position='static' sx={{ backgroundColor:'beige', boxShadow:'none', display:'flex', marginTop:'20px',borderRadius:'30px', opacity:'60%', border: '4mm ridge rgba(211, 220, 50, .6)'}}>
                     <Toolbar>
-                        <Typography variant="h3" sx={{ color:'black', marginRight:'30px'}}>CC'Me</Typography>
+                        <Typography variant="h3" sx={{ color:'black', marginRight:'30px'}}><a href="/">CC'Me</a></Typography>
                         <Grid2 container spacing={3}>
                             <Grid2>
-                                <Button>Contractors</Button>
+                                <Button>
+                                    <a href='/contracts'>Contracts</a>
+                                </Button>
                             </Grid2>
                             <Grid2 >
-                                <Button>Contracts</Button>      
+                                <Button>Contractors</Button>      
                             </Grid2>
                         </Grid2>
                         <SearchField />

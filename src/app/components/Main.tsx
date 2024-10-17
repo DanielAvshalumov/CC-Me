@@ -4,38 +4,11 @@ import contractorAvatar from "../public/images/avatar/avatar-1300331_1280.png";
 import constructionAvatar from "../public/images/avatar/construction-3384689_1280.jpg";
 import siteAvatar from "../public/images/avatar/11316980.png";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import Hero from "./Hero";
+import JobsComponent from "./Jobs";
 
 
 const Main = () => {
-
-    const jobElement = jsonData.jobs.map((job: {
-        field: string;
-        company: string;
-        location: string;
-        views: number;
-        ccs: number;}) =>
-            <ListItemButton> 
-                <ListItem>
-                    <ListItemAvatar>
-                        <Avatar alt='construction worker' src={constructionAvatar.src} />
-                    </ListItemAvatar>
-                    <ListItemText
-                        primary={
-                            <Typography variant="h6">
-                                {`${job.field}`}
-                            </Typography>
-                        }
-                        secondary={
-                        <>
-                            <b>Company</b> - {`${job.company}`}<br /><b>Views</b> - {`${job.views}`}<br /><b>Location</b> - {`${job.location}`}<br/><b>CC's</b> - ${job.ccs}
-                        </>}
-                    />
-                    <ListItemIcon style={{marginLeft:'auto'}}>
-                        <NavigateNextIcon />
-                    </ListItemIcon>
-                </ListItem>
-            </ListItemButton>
-    )
 
     const contractorElement = jsonData.Contractors.map((contractor: {
         "name": string;
@@ -98,13 +71,15 @@ const Main = () => {
     )
 
     return(
+        
         <Box display='flex' flexDirection='column' alignItems='center'>
+            <Hero />
             <Typography variant='h4' mb={3}>Most Recents</Typography>
             <Box display='flex' justifyContent='space-between' sx={{width:'85%'}} >
                 <Box display='flex' flexDirection='column'>
                     <Typography variant="h5">Jobs</Typography>
                     <List>
-                        {jobElement}
+                        <JobsComponent />
                     </List>
                 </Box>
                 <Box display='flex' flexDirection='column'>
