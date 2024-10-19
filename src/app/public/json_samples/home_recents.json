@@ -1,13 +1,6 @@
 {
     "jobs": [
         {
-            "field": "General Handyman",
-            "company": "Quick Fix Handyman",
-            "location": "Los Angeles, CA",
-            "views": 150,
-            "ccs": 5
-        },
-        {
             "field": "Plumbing",
             "company": "Expert Plumbers",
             "location": "Chicago, IL",
