@@ -1,11 +1,14 @@
+import { GetServerSideProps } from "next";
 import { Typography, Box, List, Paper } from "@mui/material";
-import JobsComponent from "../components/Jobs";
+import Jobs from "../components/Jobs";
 import JobDetails from "./JobDetails";
 import JobSelect from "./JobSelect";
 
+
 const Contracts = () => {
 
-
+    const options = ['Plumbing','Electrical','Landscaping','Roofing','Carpentry','Painting','Home Renovation','Flooring','General Handyman'];
+    
     
     return (
         <Box display='flex' style={{width:'95%', margin:'30px'}}>
@@ -14,7 +17,7 @@ const Contracts = () => {
                 <Box display='flex' flexDirection='column' maxHeight={700} overflow='auto'>
                         <Typography variant="h5">Jobs</Typography>
                         <List>
-                            <JobsComponent />
+                            <Jobs />
                         </List>
                 </Box>
             </Paper>

@@ -5,7 +5,7 @@ import constructionAvatar from "../public/images/avatar/construction-3384689_128
 import siteAvatar from "../public/images/avatar/11316980.png";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Hero from "./Hero";
-import JobsComponent from "./Jobs";
+import Jobs from "./Jobs";
 
 
 const Main = () => {
@@ -79,7 +79,7 @@ const Main = () => {
                 <Box display='flex' flexDirection='column'>
                     <Typography variant="h5">Jobs</Typography>
                     <List>
-                        <JobsComponent />
+                        <Jobs />
                     </List>
                 </Box>
                 <Box display='flex' flexDirection='column'>
