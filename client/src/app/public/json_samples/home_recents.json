@@ -1,0 +1,214 @@
+{
+    "jobs": [
+        {
+            "field": "Plumbing",
+            "company": "Expert Plumbers",
+            "location": "Chicago, IL",
+            "views": 200,
+            "ccs": 10
+        },
+        {
+            "field": "Electrical",
+            "company": "Ace Electricians",
+            "location": "New York, NY",
+            "views": 120,
+            "ccs": 3
+        },
+        {
+            "field": "Landscaping",
+            "company": "Green Thumb Gardening",
+            "location": "Austin, TX",
+            "views": 80,
+            "ccs": 2
+        },
+        {
+            "field": "Roofing",
+            "company": "Roofing Solutions",
+            "location": "Phoenix, AZ",
+            "views": 65,
+            "ccs": 1
+        },
+        {
+            "field": "Carpentry",
+            "company": "Carpentry Masters",
+            "location": "Boston, MA",
+            "views": 140,
+            "ccs": 7
+        },
+        {
+            "field": "Painting",
+            "company": "Home Painting Co.",
+            "location": "Denver, CO",
+            "views": 75,
+            "ccs": 1
+        },
+        {
+            "field": "Home Renovation",
+            "company": "Renovation Specialists",
+            "location": "Seattle, WA",
+            "views": 90,
+            "ccs": 2
+        },
+        {
+            "field": "Flooring",
+            "company": "Flooring Experts",
+            "location": "Dallas, TX",
+            "views": 130,
+            "ccs": 3
+        },
+        {
+            "field": "General Handyman",
+            "company": "Handy Helpers",
+            "location": "San Francisco, CA",
+            "views": 160,
+            "ccs": 4
+        }
+    ],
+    "Contractors": [
+        {
+            "name": "John Handy",
+            "field": [
+                "General Handyman",
+                "Carpentry"
+            ],
+            "rating": 4.8,
+            "jobs": 15
+        },
+        {
+            "name": "Lisa Fixit",
+            "field": [
+                "Plumbing"
+            ],
+            "rating": 4.5,
+            "jobs": 8
+        },
+        {
+            "name": "Mark Renovator",
+            "field": [
+                "Home Renovation",
+                "Painting"
+            ],
+            "rating": 4.7,
+            "jobs": 12
+        },
+        {
+            "name": "Emily Electric",
+            "field": [
+                "Electrical Work"
+            ],
+            "rating": 4.6,
+            "jobs": 20
+        },
+        {
+            "name": "Tom Gardener",
+            "field": [
+                "Landscaping"
+            ],
+            "rating": 4.9,
+            "jobs": 10
+        },
+        {
+            "name": "Rachel Roofing",
+            "field": [
+                "Roof Repair"
+            ],
+            "rating": 4.4,
+            "jobs": 18
+        },
+        {
+            "name": "George Painter",
+            "field": [
+                "Interior Painting"
+            ],
+            "rating": 4.5,
+            "jobs": 6
+        },
+        {
+            "name": "Sophie Plumb",
+            "field": [
+                "Pipe Installation",
+                "Repair"
+            ],
+            "rating": 4.8,
+            "jobs": 9
+        },
+        {
+            "name": "Jake Flooring",
+            "field": [
+                "Floor Installation"
+            ],
+            "rating": 4.6,
+            "jobs": 11
+        },
+        {
+            "name": "Anna Clean",
+            "field": [
+                "Cleaning Services"
+            ],
+            "rating": 4.7,
+            "jobs": 14
+        }
+    ],
+    "Companies": [
+        {
+            "name": "Quick Fix Handyman",
+            "field": "General Handyman Services",
+            "headquarters": "Los Angeles, CA",
+            "jobs": 25
+        },
+        {
+            "name": "Expert Plumbers",
+            "field": "Plumbing Services",
+            "headquarters": "Chicago, IL",
+            "jobs": 5
+        },
+        {
+            "name": "Ace Electricians",
+            "field": "Electrical Services",
+            "headquarters": "New York, NY",
+            "jobs": 8
+        },
+        {
+            "name": "Green Thumb Gardening",
+            "field": "Gardening and Landscaping",
+            "headquarters": "Austin, TX",
+            "jobs": 12
+        },
+        {
+            "name": "Roofing Solutions",
+            "field": "Roofing Services",
+            "headquarters": "Phoenix, AZ",
+            "jobs": 10
+        },
+        {
+            "name": "Carpentry Masters",
+            "field": "Carpentry Services",
+            "headquarters": "Boston, MA",
+            "jobs": 14
+        },
+        {
+            "name": "Home Painting Co.",
+            "field": "Painting Services",
+            "headquarters": "Denver, CO",
+            "jobs": 6
+        },
+        {
+            "name": "Renovation Specialists",
+            "field": "Home Renovation",
+            "headquarters": "Seattle, WA",
+            "jobs": 15
+        },
+        {
+            "name": "Flooring Experts",
+            "field": "Flooring Installation",
+            "headquarters": "Dallas, TX",
+            "jobs": 4
+        },
+        {
+            "name": "Handy Helpers",
+            "field": "General Handyman Services",
+            "headquarters": "San Francisco, CA",
+            "jobs": 9
+        }
+    ]
+}
