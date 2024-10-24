@@ -18,7 +18,7 @@ export default function Header(props : any) {
                             <Grid2>
                                 <Button>
                                     {/* <a href='/contracts'>Contracts</a> */}
-                                    <Link href='/contracts'>Contracts</Link>
+                                    <a href='/contracts'>Contracts</a>
                                 </Button>
                             </Grid2>
                             <Grid2 >

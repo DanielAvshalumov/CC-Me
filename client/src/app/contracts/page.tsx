@@ -1,32 +1,31 @@
 import { GetServerSideProps } from "next";
 import { Typography, Box, List, Paper } from "@mui/material";
-import Jobs from "../components/Jobs";
+import Jobs, { Job } from "../components/Jobs";
 import JobDetails from "./JobDetails";
 import JobSelect from "./JobSelect";
-import { useEffect } from "react";
+import { Suspense, useEffect, useState } from "react";
 import JobService from "@/service/JobService";
 
-// export async function getServerSideProps() {
+const Contracts = async () => {
+
+
+    const fetchData =  async () => {
+        const res = await fetch('http://localhost:8080/jobs');
+        const data = await res.json();
+        // const res = await JobService.getAllJobs().then((_res) => {
+        //     return _res.data;
+        // });
+        console.log('data',data);
+        const answer : Job = data.map((job: any) => job);
+        return answer;
+    }
+
+    const data = fetchData();
     
-// }
-
-const Contracts = () => {
-
-    
-
     return (
-        <Box display='flex' style={{width:'95%', margin:'30px'}}>
-            <JobSelect />
-            <Paper elevation={0} sx={{marginRight:'auto'}}>
-                <Box display='flex' flexDirection='column' maxHeight={700} overflow='auto'>
-                        <Typography variant="h5">Jobs</Typography>
-                        <List>
-                            <Jobs />
-                        </List>
-                </Box>
-            </Paper>
-            <JobDetails />
-        </Box>
+        <Suspense fallback={<p>Loading feed</p>}>
+            <JobDetails props={data}/>
+        </Suspense>
     )
 }
 

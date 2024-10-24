@@ -1,21 +1,25 @@
-"use client"
 import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import constructionAvatar from "../public/images/avatar/construction-3384689_1280.jpg";
 import jsonData from "../public/json_samples/home_recents.json"
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import { useState } from "react";
 import React from "react";
+import JobService from "@/service/JobService";
 
-const Jobs = () => {
+export interface Job {
+    field: string;
+    company: string;
+    location: string;
+    views: number;
+    ccs: number;
+}
 
-    const [jobDetail, setJobDetail] = useState(null);
+const Jobs = async () => {
 
-    const jobElement = jsonData.jobs.map((job: {
-        field: string;
-        company: string;
-        location: string;
-        views: number;
-        ccs: number;}) => 
+    // const res = await JobService.getAllJobs();
+    // console.log(res.data);
+
+    const jobElement = jsonData.jobs.map((job:Job) => 
                 <ListItemButton>
                     <ListItem>
                         <ListItemAvatar>

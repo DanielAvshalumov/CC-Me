@@ -1,10 +1,8 @@
-"use client";
 import { useEffect, useState } from "react";
 import { Checkbox, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
 
-const JobSelect = () => {
+const JobSelect = ({checked, setChecked}: {checked: any, setChecked: any}) => {
 
-    const [checked, setChecked] = useState<string[]>(['']);
     const options = ['Plumbing','Electrical','Landscaping','Roofing','Carpentry','Painting','Home Renovation','Flooring','General Handyman']
 
     const handleToggle = (value: any) => {
@@ -19,12 +17,9 @@ const JobSelect = () => {
         }
     }
 
-    useEffect(() => {
-        console.log(checked);
-    },[checked]);
 
     return (
-        <>
+        
             <List>
                 {options.map(value => {
 
@@ -50,7 +45,7 @@ const JobSelect = () => {
 
                 }
             </List>
-        </>
+        
     )
 }
 
