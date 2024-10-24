@@ -17,7 +17,8 @@ export default function Header(props : any) {
                         <Grid2 container spacing={3}>
                             <Grid2>
                                 <Button>
-                                    <a href='/contracts'>Contracts</a>
+                                    {/* <a href='/contracts'>Contracts</a> */}
+                                    <Link href='/contracts'>Contracts</Link>
                                 </Button>
                             </Grid2>
                             <Grid2 >

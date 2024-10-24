@@ -1,4 +1,3 @@
-'use client'
 import { GetServerSideProps } from "next";
 import { Typography, Box, List, Paper } from "@mui/material";
 import Jobs from "../components/Jobs";
@@ -7,16 +6,13 @@ import JobSelect from "./JobSelect";
 import { useEffect } from "react";
 import JobService from "@/service/JobService";
 
+// export async function getServerSideProps() {
+    
+// }
+
 const Contracts = () => {
 
-    useEffect( () => {
-        fetchData();
-    },[])
     
-    const fetchData = async () => {
-        const res = await JobService.getAllJobs();
-        console.log(res);
-    }
 
     return (
         <Box display='flex' style={{width:'95%', margin:'30px'}}>

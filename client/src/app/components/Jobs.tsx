@@ -3,7 +3,6 @@ import { Avatar, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListIte
 import constructionAvatar from "../public/images/avatar/construction-3384689_1280.jpg";
 import jsonData from "../public/json_samples/home_recents.json"
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
-import JobDetails from "../contracts/JobDetails";
 import { useState } from "react";
 import React from "react";
 
