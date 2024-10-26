@@ -14,13 +14,12 @@ export interface Job {
     ccs: number;
 }
 
-const Jobs = async () => {
+const Jobs = async ({job}:{job: Job}) => {
 
     // const res = await JobService.getAllJobs();
-    // console.log(res.data);
 
-    const jobElement = jsonData.jobs.map((job:Job) => 
-                <ListItemButton>
+    const jobElement = jsonData.jobs.map((job:Job,key: number) => 
+                <ListItemButton key={key}>
                     <ListItem>
                         <ListItemAvatar>
                             <Avatar alt='construction worker' src={constructionAvatar.src} />

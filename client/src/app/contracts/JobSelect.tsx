@@ -22,9 +22,7 @@ const JobSelect = ({checked, setChecked}: {checked: any, setChecked: any}) => {
         
             <List>
                 {options.map(value => {
-
                     const label = value;
-                    console.log('value',value)
                     return (
                         <ListItem key={value}>
                             {/* <ListItemButton onClick={handleToggle} dense> */}
