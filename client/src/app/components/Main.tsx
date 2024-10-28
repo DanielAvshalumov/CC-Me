@@ -7,9 +7,13 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Hero from "./Hero";
 import Jobs from "./Jobs";
 import React from "react";
+import JobService from "@/service/JobService";
 
 
-const Main = () => {
+const Main = async () => {
+
+    const jobProps = await JobService.getAllJobs();
+    const jobs = await jobProps.data;
 
     const contractorElement = jsonData.Contractors.map((contractor: {
         "name": string;
@@ -80,7 +84,7 @@ const Main = () => {
                 <Box display='flex' flexDirection='column'>
                     <Typography variant="h5">Jobs</Typography>
                     <List>
-                        <Jobs />
+                        <Jobs jobs={jobs}/>
                     </List>
                 </Box>
                 <Box display='flex' flexDirection='column'>

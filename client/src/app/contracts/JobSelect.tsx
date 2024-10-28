@@ -1,22 +1,15 @@
-import { useEffect, useState } from "react";
 import { Checkbox, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+import { Job } from "../components/Jobs";
+import Link from "next/link";
+import { getItem } from "./utils";
 
-const JobSelect = ({checked, setChecked}: {checked: any, setChecked: any}) => {
+const JobSelect = async ({jobs}:{jobs: Job[]}) => {
 
-    const options = ['Plumbing','Electrical','Landscaping','Roofing','Carpentry','Painting','Home Renovation','Flooring','General Handyman']
+    // const options = jobs.map(item => item.field);
 
-    const handleToggle = (value: any) => {
-        if(checked.includes(value.target.id)) {
-            setChecked((prev: string[]) => {
-                return prev.filter(item => item !== value.target.id);
-            });
-        } else {
-            setChecked((prev: string[]) => {
-                return [...prev,value.target.id]
-            });
-        }
-    }
-
+    const cachedJobs = await getItem('init');
+    console.log('cached jobs',cachedJobs);
+    const options = cachedJobs.map((item: { field: any; }) => item.field);
 
     return (
         
@@ -24,20 +17,23 @@ const JobSelect = ({checked, setChecked}: {checked: any, setChecked: any}) => {
                 {options.map(value => {
                     const label = value;
                     return (
-                        <ListItem key={value}>
-                            {/* <ListItemButton onClick={handleToggle} dense> */}
+                        <Link key={value} href={`contracts/${value}`}>
+                            <ListItemButton dense>
                                     <Checkbox 
                                         edge='start'
-                                        checked={checked.includes(value)}
+                                        checked={options.includes(value)}
                                         tabIndex={-1}
                                         disableRipple
                                         inputProps={{ 'aria-labelledby': `${value}`}}
-                                        onClick={handleToggle}
+                                        // onClick={handleToggle}
                                         id={value}
                                     />
-                                <ListItemText id={label} primary={value} />
-                            {/* </ListItemButton> */}
-                        </ListItem>
+                                    
+                                    
+                                <ListItemText id={label} primary={value}>
+                                </ListItemText>
+                            </ListItemButton>
+                        </Link>
                     )
                 }) 
 

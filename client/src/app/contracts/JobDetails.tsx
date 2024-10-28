@@ -1,68 +1,72 @@
-'use client'
 import { Box, List, Paper, Typography } from "@mui/material";
 import JobSelect from "./JobSelect";
 import Jobs, { Job } from "../components/Jobs";
 import { useEffect, useReducer, useState } from "react";
 
-const reducer = (state : any, action: any) => {
-    const { type, payload } = action;
-    switch(type) {
-        case 'init': {
-            console.log('dispatching')
-            const res = payload.map((job:Job) => ({
-                field: job.field,
-                company:job.company,
-                location: job.location,
-                views: job.views,
-                ccs: job.ccs,
-                checked: false
-            }));
-            return res;
-        }
-        case "check":
-            return {
-                ...state,
-                field: state.payload.field,
-                checked: !state.checked
-            }
-    }
-}
+// const reducer = (state : any, action: any) => {
+//     const { type, payload } = action;
+//     switch(type) {
+//         case 'init': {
+//             console.log('dispatching')
+//             const res = payload.map((job:Job) => ({
+//                 field: job.field,
+//                 company:job.company,
+//                 location: job.location,
+//                 views: job.views,
+//                 ccs: job.ccs,
+//                 checked: false
+//             }));
+//             return res;
+//         }
+//         case "check":{
+//             console.log(state,'state')
+//             return [...state,{
+//                 ...payload,
+//                 checked : !payload.checked
+//             }
+//             ]
+//             // return {
+//             //     ...state,
+//             //     field: state.payload.field,
+//             //     checked: !state.checked
+//             // }}
+//         }
+//     }
+// }
 
-const JobDetails = ({jobs}: {jobs:Job}) => {
+const JobDetails = ({jobs}: {jobs:Job[]}) => {
 
-    const [state, dispatch] = useReducer(reducer,[{
-        field: "",
-        company: "",
-        location: "",
-        views: 0,
-        ccs: 0,
-        checked: false
-    }]);
+    // const [state, dispatch] = useReducer(reducer,[{
+    //     field: "",
+    //     company: "",
+    //     location: "",
+    //     views: 0,
+    //     ccs: 0,
+    //     checked: false
+    // }]);
 
-    const [checked, setChecked] = useState<string[]>(['']);
     
-    const toggleCheck = (arr:any) => {
-        setChecked(arr)
-        dispatch({type:'checked'})
-        console.log(state);
-        console.log()
-    }
+    // const toggleCheck = (arr:any) => {
+    //     dispatch({type:'check', payload:job})
+    //     console.log(state);
+    //     console.log()
+    // }
 
-    useEffect(() => {
-        console.log('jobs before ue', state)
-        console.log('jobs',jobs)
-        dispatch({type:'init',payload:jobs});
-        console.log('use effect',state);
-    },[])
+    // useEffect(() => {
+    //     console.log('jobs before ue', state)
+    //     console.log('jobs',jobs)
+    //     dispatch({type:'init',payload:jobs});
+    //     console.log('use effect',state);
+    // },[])
 
     return (
         <Box display='flex' style={{width:'95%', margin:'30px'}}>
-            <JobSelect checked={checked} setChecked={toggleCheck}/>
+            <JobSelect jobs={jobs}/>
             <Paper elevation={0} sx={{marginRight:'auto'}}>
                 <Box display='flex' flexDirection='column' maxHeight={700} overflow='auto'>
                         <Typography variant="h5">Jobs</Typography>
                         <List>
-                            <Jobs job={jobs}/>
+                            <Jobs jobs={jobs}/>
                         </List>
                 </Box>
             </Paper>
