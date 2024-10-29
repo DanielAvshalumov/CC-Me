@@ -17,10 +17,11 @@ export interface Job {
 const Jobs = async ({jobs}:{jobs: Job[]}) => {
 
     // const res = await JobService.getAllJobs();
-    // console.log('jobs',jobs)
- 
-    const jobElement = jobs.map((job:Job,key: number) => 
-                <ListItemButton key={key}>
+
+    
+    const jobElement = jobs.map((job:Job,key: number) => {
+
+                return (<ListItemButton key={key}>
                     <ListItem>
                         <ListItemAvatar>
                             <Avatar alt='construction worker' src={constructionAvatar.src} />
@@ -40,7 +41,8 @@ const Jobs = async ({jobs}:{jobs: Job[]}) => {
                     <ListItemIcon style={{marginLeft:'auto'}}>
                         <NavigateNextIcon />
                     </ListItemIcon>
-                </ListItemButton>
+                </ListItemButton>)
+    }
     )
 
     return (

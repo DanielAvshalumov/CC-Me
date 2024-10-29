@@ -59,8 +59,11 @@ const JobDetails = ({jobs}: {jobs:Job[]}) => {
     //     console.log('use effect',state);
     // },[])
 
+    console.log('jpbs',jobs);
+
     return (
         <Box display='flex' style={{width:'95%', margin:'30px'}}>
+            {/* <JobSelect jobs={jobs} />    */}
             <Paper elevation={0} sx={{marginRight:'auto'}}>
                 <Box display='flex' flexDirection='column' maxHeight={700} overflow='auto'>
                         <Typography variant="h5">Jobs</Typography>

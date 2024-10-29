@@ -4,19 +4,17 @@ import { Job } from "../components/Jobs";
 import Link from "next/link";
 import { getItem } from "./utils";
 import { useEffect, useState } from "react";
+import { usePathname, useRouter } from "next/navigation";
 
 const JobSelect = ({jobs}: {jobs:Job[]}) => {
-
-    // const options = jobs.map(item => item.field);
-
-    // const cachedJobs = await getItem('init');
-    // const option = cachedJobs.map((item: { field: any; }) => item.field);
+    
+    const router = useRouter();
     const [options, setOptions] = useState(['']);
-    // console.log("params",cachedJobs);
 
     const handleToggle = (e: any) => {
         if(options.includes(e.target.id)) {
             setOptions(prev => {
+                router.push(usePathname().replace(e.target.id,''));
                 return prev.filter(item => item !== e.target.id);
             })
         } else {
@@ -24,19 +22,17 @@ const JobSelect = ({jobs}: {jobs:Job[]}) => {
         }
     }
     const optionList = jobs.map(item => item.field);
-    console.log('is this being shown?')
-    console.log('options jobs',jobs);
 
     return (
             <List>
-                {optionList.map(value => {
-                    const label = value;
+                {jobs.map(value => {
+                    const label = value.field;
                     return (
-                        <Link key={label} href={`contracts/${value}`}>
+                        <Link key={label} href={`${usePathname()}/${label}`}>
                             <ListItemButton dense>
                                     <Checkbox 
                                         edge='start'
-                                        checked={options.includes(value)}
+                                        checked={usePathname().includes(label)}
                                         tabIndex={-1}
                                         disableRipple
                                         inputProps={{ 'aria-labelledby': `${value}`}}
