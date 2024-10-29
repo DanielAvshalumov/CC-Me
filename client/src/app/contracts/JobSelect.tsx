@@ -1,23 +1,38 @@
-import { Checkbox, List, ListItem, ListItemButton, ListItemIcon, ListItemText } from "@mui/material";
+'use client'
+import { Checkbox, List, ListItem, ListItemButton, ListItemIcon, ListItemText, Typography } from "@mui/material";
 import { Job } from "../components/Jobs";
 import Link from "next/link";
 import { getItem } from "./utils";
+import { useEffect, useState } from "react";
 
-const JobSelect = async ({jobs}:{jobs: Job[]}) => {
+const JobSelect = ({jobs}: {jobs:Job[]}) => {
 
     // const options = jobs.map(item => item.field);
 
-    const cachedJobs = await getItem('init');
-    console.log('cached jobs',cachedJobs);
-    const options = cachedJobs.map((item: { field: any; }) => item.field);
+    // const cachedJobs = await getItem('init');
+    // const option = cachedJobs.map((item: { field: any; }) => item.field);
+    const [options, setOptions] = useState(['']);
+    // console.log("params",cachedJobs);
+
+    const handleToggle = (e: any) => {
+        if(options.includes(e.target.id)) {
+            setOptions(prev => {
+                return prev.filter(item => item !== e.target.id);
+            })
+        } else {
+            setOptions(prev => ([...prev,e.target.id]))
+        }
+    }
+    const optionList = jobs.map(item => item.field);
+    console.log('is this being shown?')
+    console.log('options jobs',jobs);
 
     return (
-        
             <List>
-                {options.map(value => {
+                {optionList.map(value => {
                     const label = value;
                     return (
-                        <Link key={value} href={`contracts/${value}`}>
+                        <Link key={label} href={`contracts/${value}`}>
                             <ListItemButton dense>
                                     <Checkbox 
                                         edge='start'
@@ -25,12 +40,12 @@ const JobSelect = async ({jobs}:{jobs: Job[]}) => {
                                         tabIndex={-1}
                                         disableRipple
                                         inputProps={{ 'aria-labelledby': `${value}`}}
-                                        // onClick={handleToggle}
-                                        id={value}
+                                        onClick={handleToggle}
+                                        id={label}
                                     />
                                     
                                     
-                                <ListItemText id={label} primary={value}>
+                                <ListItemText id={label} primary={label}>
                                 </ListItemText>
                             </ListItemButton>
                         </Link>
@@ -41,6 +56,6 @@ const JobSelect = async ({jobs}:{jobs: Job[]}) => {
             </List>
         
     )
-}
 
+}
 export default JobSelect;

@@ -17,7 +17,7 @@ export interface Job {
 const Jobs = async ({jobs}:{jobs: Job[]}) => {
 
     // const res = await JobService.getAllJobs();
-    console.log('jobs',jobs)
+    // console.log('jobs',jobs)
  
     const jobElement = jobs.map((job:Job,key: number) => 
                 <ListItemButton key={key}>

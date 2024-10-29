@@ -17,7 +17,7 @@ const Contracts = async () => {
     // const data = getItem('init');
     const res = await JobService.getAllJobs();
     const data = await res.data;
-    const ans = getItem('init');
+    const ans = await getItem('init');
     console.log('init',ans);
     
     
