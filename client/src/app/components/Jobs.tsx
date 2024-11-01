@@ -19,6 +19,13 @@ export interface Job {
 
 const Jobs = async ({jobs}:{jobs: Job[]}) => {
 
+    const link = (job: any) => {
+        if (!usePathname().includes('contracts')) {
+            return `/contracts?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}`;
+        } else {
+            return `${usePathname()}?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}`;
+        }
+    }
     
     const jobElement = jobs.map((job:Job,key: number) => {
 
@@ -41,8 +48,8 @@ const Jobs = async ({jobs}:{jobs: Job[]}) => {
                         />
                     </ListItem>     
                     <ListItemIcon style={{marginLeft:'auto'}}>
-                        <Link href={`/contracts?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}`}>
-                            <NavigateNextIcon onClick={(e)=>{console.log(e.target)}}/>
+                        <Link href={link(job)}>
+                            <NavigateNextIcon onClick={(e)=>{console.log()}}/>
                         </Link>
                     </ListItemIcon>
                 </ListItemButton>)

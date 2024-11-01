@@ -16,7 +16,7 @@ const contractsLayout = async ({
             <section style={{display:'flex'}}>
                 <JobSelect jobs={cachedJobs}/>
                 {children}
-                {/* <JobHero /> */}
+                <JobHero />
             </section>
     )
 }

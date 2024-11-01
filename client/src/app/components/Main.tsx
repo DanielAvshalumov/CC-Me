@@ -6,7 +6,7 @@ import siteAvatar from "../public/images/avatar/11316980.png";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import Hero from "./Hero";
 import Jobs from "./Jobs";
-import React from "react";
+import React, { Suspense } from "react";
 import JobService from "@/service/JobService";
 
 
@@ -84,7 +84,9 @@ const Main = async () => {
                 <Box display='flex' flexDirection='column'>
                     <Typography variant="h5">Jobs</Typography>
                     <List>
-                        <Jobs jobs={jobs}/>
+                        <Suspense fallback={<p>Loading feed</p>}>
+                            <Jobs jobs={jobs}/>
+                        </Suspense>
                     </List>
                 </Box>
                 <Box display='flex' flexDirection='column'>
