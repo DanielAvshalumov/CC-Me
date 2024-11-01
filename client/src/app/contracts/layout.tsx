@@ -2,6 +2,7 @@ import { Typography } from "@mui/material";
 import { Job } from "../components/Jobs";
 import JobSelect from "./JobSelect";
 import { getItem } from "./utils";
+import JobHero from "./JobDisplay";
 
 const contractsLayout = async ({
     children, // will be a page or nested layout
@@ -15,6 +16,7 @@ const contractsLayout = async ({
             <section style={{display:'flex'}}>
                 <JobSelect jobs={cachedJobs}/>
                 {children}
+                {/* <JobHero /> */}
             </section>
     )
 }

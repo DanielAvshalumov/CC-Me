@@ -1,7 +1,7 @@
 import { CssBaseline } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
 import Header from './components/header'
-import Hero from './components/Hero'
+// import './globals.css';
 
 export const metadata = {
   title: 'Next.js',
