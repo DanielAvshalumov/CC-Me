@@ -17,7 +17,7 @@ export interface Job {
     ccs: number;
 }
 
-const Jobs = async ({jobs}:{jobs: Job[]}) => {
+const Jobs = ({jobs}:{jobs: Job[]}) => {
 
     const link = (job: any) => {
         if (!usePathname().includes('contracts')) {

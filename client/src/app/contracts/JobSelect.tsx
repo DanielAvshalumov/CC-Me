@@ -28,7 +28,7 @@ const JobSelect = ({jobs}: {jobs:Job[]}) => {
     console.log(usePathname())
 
     return (
-            <List>
+            <List sx={{ marginTop:'50px'}}>
                 {optionList.map(value => {
                     const label = value;
                     const path = decodeURI(usePathname());

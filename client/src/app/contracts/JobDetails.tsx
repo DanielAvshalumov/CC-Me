@@ -14,7 +14,7 @@ const JobDetails = ({jobs}: {jobs:Job[]}) => {
             {/* <JobSelect jobs={jobs} />    */}
             <Paper elevation={0} sx={{marginRight:'auto'}}>
                 <Box display='flex' flexDirection='column' maxHeight={700} overflow='auto'>
-                        <Typography variant="h5">Jobs</Typography>
+                        <Typography variant="h5"></Typography>
                         <List>
                             <Jobs jobs={jobs}/>
                         </List>

@@ -13,7 +13,7 @@ const contractsLayout = async ({
     console.log('cached jobs', cachedJobs);
 
     return (
-            <section style={{display:'flex'}}>
+            <section style={{display:'flex', width:1500}}>
                 <JobSelect jobs={cachedJobs}/>
                 {children}
                 <JobHero />

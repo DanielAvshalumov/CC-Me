@@ -18,7 +18,7 @@ export default function Header(props : any) {
                             <Grid2>
                                 <Button>
                                     {/* <a href='/contracts'>Contracts</a> */}
-                                    <a href='/contracts'>Contracts</a>
+                                    <Link href='/contracts'>Contracts</Link>
                                 </Button>
                             </Grid2>
                             <Grid2 >
@@ -26,7 +26,9 @@ export default function Header(props : any) {
                             </Grid2>
                         </Grid2>
                         <SearchField />
-                        <Button sx={{ marginLeft:'auto' }}>Sign In</Button>
+                        <Link href='/login'>
+                            <Button sx={{ marginLeft:'auto' }}>Sign In</Button>
+                        </Link>
                     </Toolbar>
                 </AppBar>
     </Container>
