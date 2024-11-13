@@ -1,5 +1,5 @@
 'use client'
-import { Box, Paper, Typography } from "@mui/material"
+import { Box, Button, Paper, Typography } from "@mui/material"
 import { useSearchParams } from "next/navigation"
 
 const JobHero = () => {
@@ -16,10 +16,18 @@ const JobHero = () => {
 
     return (
         <Paper>
-            <Box display='flex' flexDirection='column' width={1200}>
-                <Typography variant="h1">{params[0][1]}</Typography>
-                <Typography variant="h2">{params[1][1]}</Typography>
-                <Typography variant="body1">Lorem ipsum dolor sit amet, consectetur  elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</Typography>
+            <Box display={'flex'} flexDirection={'column'}>
+                <Box display='flex' flexDirection='column' width={1000} padding={5} alignItems='start'>
+                    <Typography variant="h2">{params[0][1]}</Typography>
+                    <Typography variant="h3">{params[1][1]}</Typography>
+                    <Typography variant="body2">{params[4][1]}</Typography>
+                    <Button variant="contained" sx={{ marginTop: '15px'}}>CC`Me</Button>
+                </Box>
+                <Box display='flex' flexDirection='column' width={1000} padding={5} sx={{marginTop:'300px'}}>
+                    <Typography variant="subtitle1"><i>Location</i> - {params[2][1]}</Typography>
+                    <Typography variant="body2"><i>Views</i> - {params[3][1]}</Typography>
+                    <Typography variant="caption">{params[4][1]}</Typography>
+                </Box>
             </Box>
         </Paper>
     )

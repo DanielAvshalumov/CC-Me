@@ -34,7 +34,7 @@ const JobSelect = ({jobs}: {jobs:Job[]}) => {
                     const path = decodeURI(usePathname());
                     return (
                         <Link key={label} href={`${path}/${label}/?${searchParams.toString()}`}>
-                            <ListItemButton >
+                            <ListItemButton sx={{ background:'pink', borderRadius:'10px', marginBottom:'10px' }}>
                                     <Checkbox 
                                         edge='start'
                                         checked={path.includes(label)}

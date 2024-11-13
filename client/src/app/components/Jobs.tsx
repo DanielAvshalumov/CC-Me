@@ -15,15 +15,17 @@ export interface Job {
     location: string;
     views: number;
     ccs: number;
+    description: string
 }
 
 const Jobs = ({jobs}:{jobs: Job[]}) => {
 
+    console.log('jobs',jobs);
     const link = (job: any) => {
         if (!usePathname().includes('contracts')) {
-            return `/contracts?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}`;
+            return `/contracts?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}`;
         } else {
-            return `${usePathname()}?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}`;
+            return `${usePathname()}?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}`;
         }
     }
     
@@ -31,7 +33,7 @@ const Jobs = ({jobs}:{jobs: Job[]}) => {
 
                 return (
                 <ListItemButton key={key}>
-                    <ListItem>
+                    <ListItem sx={{ width:'300px'}}>
                         <ListItemAvatar>
                             <Avatar alt='construction worker' src={constructionAvatar.src} />
                         </ListItemAvatar>
