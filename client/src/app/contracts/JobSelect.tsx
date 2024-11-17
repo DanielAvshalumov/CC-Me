@@ -11,12 +11,10 @@ const JobSelect = ({jobs}: {jobs:Job[]}) => {
     const router = useRouter();
     const [options, setOptions] = useState(['']);
     const searchParams = useSearchParams();
-    console.log(searchParams.toString());
     
     const handleToggle = (e: any) => {
         if(options.includes(e.target.id)) {
             setOptions(prev => {
-                console.log('mem')
                 router.push(usePathname().replace(encodeURI(e.target.id),'')+`?${searchParams.toString()}`);
                 return prev.filter(item => item !== e.target.id);
             })
@@ -25,7 +23,6 @@ const JobSelect = ({jobs}: {jobs:Job[]}) => {
         }
     }
     const optionList = Array.from(new Set(jobs.map(item => item.field)));
-    console.log(usePathname())
 
     return (
             <List sx={{ marginTop:'50px'}}>

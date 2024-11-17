@@ -6,15 +6,11 @@ import Register from "./Register";
 
 const Login = () => {
 
-    const handleLogIn = (e: Event) => {
-        console.log(e.target);
-        // const res = JobService.login()
-    }
 
     return (
         <>
             <Form/>
-            <Register />
+            {/* <Register /> */}
         </>
     )
 }

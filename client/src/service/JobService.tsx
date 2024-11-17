@@ -6,7 +6,7 @@ class JobService {
 
     login(credentials:{email: string, password: string}) {
         console.log('creds',credentials);
-        return axios.post(base+'/auth/login', credentials, {headers:{'Content-Type':'application/json','Access-Control-Allow-Origins':'*'}})
+        return axios.post(base+'/auth/login', credentials, {headers:{'Content-Type':'application/json'}, withCredentials:true})
     }
 
     getAllJobs() {
