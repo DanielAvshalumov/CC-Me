@@ -10,7 +10,6 @@ const contractsLayout = async ({
     children: React.ReactNode
   }) => {
     const cachedJobs: Job[] = await getItem('init');
-    console.log('cached jobs', cachedJobs);
 
     return (
             <section style={{display:'flex', width:1500}}>

@@ -4,7 +4,7 @@ import AuthService from "@/service/AuthService";
 
 export default async function Home() {
 
-  // const user = await AuthService.getSession();
+  
 
   return (
     <>

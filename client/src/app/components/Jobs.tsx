@@ -20,7 +20,6 @@ export interface Job {
 
 const Jobs = ({jobs}:{jobs: Job[]}) => {
 
-    console.log('jobs',jobs);
     const link = (job: any) => {
         if (!usePathname().includes('contracts')) {
             return `/contracts?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}`;

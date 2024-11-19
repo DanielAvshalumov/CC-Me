@@ -21,10 +21,10 @@ const Form = () => {
     const handleLogIn = async () => {
         setLoading(true);
         try {
-            const res = await JobService.login(form)
+            const res = await JobService.login(form);
             const data = await res.data;
             console.log(data);
-            router.push("/");
+            window.location.pathname = '/';
         } catch(err) {
             console.log('err',err);
         }
