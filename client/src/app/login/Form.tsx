@@ -2,13 +2,11 @@
 import AuthService from "@/service/AuthService";
 import JobService from "@/service/JobService";
 import { Box, Button, CircularProgress, FormControl, InputLabel, TextField, Typography } from "@mui/material";
-import { useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 
 
 const Form = () => {
 
-    const router = useRouter();
     const [form, setForm] = useState({email:'',password:''});
     const [loading, setLoading] = useState<boolean>(false);
 

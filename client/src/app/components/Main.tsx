@@ -8,6 +8,7 @@ import Hero from "./Hero";
 import Jobs from "./Jobs";
 import React, { Suspense } from "react";
 import JobService from "@/service/JobService";
+import UserService from "@/service/UserService";
 
 
 const Main = async () => {
@@ -15,7 +16,11 @@ const Main = async () => {
     const jobProps = await JobService.getAllJobs();
     const jobs = await jobProps.data;
 
-    const contractorElement = jsonData.Contractors.map((contractor: {
+    const workerProps = await UserService.getAllNonContractors();
+    const workers = await workerProps.data;
+    console.log(workers);
+
+    const contractorElement = workers.map((contractor: {
         "name": string;
         "field": string[];
         "rating": number;
@@ -29,7 +34,7 @@ const Main = async () => {
                 <ListItemText
                     primary={
                         <Typography variant="h6">
-                            {`${contractor.name}`}
+                            {`${contractor.firstName}`}
                         </Typography>
                     }
                     secondary={

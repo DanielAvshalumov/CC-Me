@@ -4,11 +4,9 @@ import AuthService from "@/service/AuthService";
 
 export default async function Home() {
 
-  
-
   return (
     <>
-      <Main />
+      <Main   />
     </>
   );
 }
