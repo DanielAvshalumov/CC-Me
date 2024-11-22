@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Avatar, Menu, MenuItem, IconButton } from '@mui/material';
 import { useRouter } from 'next/navigation';
 
-const ProfileMenu = () => {
+const ProfileMenu = ({ user }: {user:any}) => {
 
     const router = useRouter();
 
@@ -12,7 +12,7 @@ const ProfileMenu = () => {
         setAnchorEl(e.currentTarget);
     };
 
-    const handleClose = (e) => {
+    const handleClose = (e:any) => {
         const val = e.target.innerText
         if(val === 'Profile') {
             router.push('/profile');
@@ -23,7 +23,7 @@ const ProfileMenu = () => {
     return (
         <div>
         <IconButton onClick={handleClick}>
-            <Avatar>D</Avatar> 
+            <Avatar>{user.firstName[0]}</Avatar> 
         </IconButton>
 
         <Menu

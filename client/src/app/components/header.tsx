@@ -52,9 +52,9 @@ export default function Header() {
                 <AppBar position='static' sx={{ backgroundColor:'beige', boxShadow:'none', display:'flex', marginTop:'20px',borderRadius:'30px', opacity:'60%', border: '4mm ridge rgba(211, 220, 50, .6)'}}>
                     <Toolbar>
                         <Typography variant="h3" sx={{ color:'black', marginRight:'30px'}}><a href="/">CC'Me</a></Typography>
-                        <Grid2 container spacing={3}>
+                        <Grid2 container spacing={3} display={'flex'} alignItems='center'>
                             <Grid2>
-                                {user && <ProfileMenu/>}
+                                {user && <ProfileMenu user={user}/>}
                             </Grid2>
                             <Grid2>
                                 <Button>
@@ -69,9 +69,10 @@ export default function Header() {
                         <SearchField />
                         {
                             !user ?
-                            <Link href='/login'>
-                                <Button sx={{ marginLeft:'auto' }}>Sign In</Button> 
-                            </Link> :
+                            
+                            <Button sx={{ marginLeft:'auto' }} onClick={() => {router.push('/login')}}>Sign In</Button> 
+                            :
+                            
                             <Button sx={{ marginLeft:'auto' }} onClick={handleLogOut}>Log out</Button>
                         }
                     </Toolbar>

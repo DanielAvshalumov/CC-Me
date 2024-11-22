@@ -4,6 +4,7 @@ import JobService from "@/service/JobService";
 import { Avatar, Box, Button, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import ProfileDisplay from "./components/ProfileDisplay";
+import ProfileSidebar from "./components/ProfileSidebar";
 
 
 const Profile = () => {
@@ -29,14 +30,14 @@ const Profile = () => {
     },[]);
     
     return (
-        <>
+        <Box display='flex' justifyContent={'center'}>
+            <ProfileSidebar user={user}/>
             <Box display='flex' sx={{ justifyContent:'start',alignItems:'center', backgroundColor:'pink', padding:'1%', marginX:'10%'}}>
-            <Avatar>{user.firstName[0]}</Avatar>
                 <Box display='flex' flexDirection='column' ml={3}>
                     <ProfileDisplay user={user} loading={loading}/>
                 </Box>
             </Box>
-        </>
+        </Box>
     )
 }
 
