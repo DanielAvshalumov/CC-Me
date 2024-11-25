@@ -39,7 +39,7 @@ const Main = async () => {
                     }
                     secondary={
                         <>
-                            <b>Field</b> - {`${contractor.field}`}<br /><b>Rating</b> - {`${contractor.rating}`}<br /><b>Jobs</b> - {`${contractor.jobs}`}
+                            <b>Field</b> - {`${contractor.company}`}<br /><b>Rating</b> - {`${contractor.rating}`}<br /><b>Jobs</b> - {`${contractor.jobs}`}
                         </>
                     }
                 />

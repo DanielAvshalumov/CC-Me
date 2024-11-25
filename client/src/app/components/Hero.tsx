@@ -58,6 +58,8 @@ const Hero = (props:any) => {
                 </IconButton>
             </Box>
             <Typography variant="h2">{images[index].imageCaption}</Typography>
+            <Typography variant="h4" mt={4}>Want to be a contractor?</Typography>
+            <Typography variant="h6">Apply <a href="/apply">here</a></Typography>
         </Box>
     )
 }

@@ -13,13 +13,6 @@ const Profile = () => {
     const [loading, setLoading] = useState(false);
     const [user, setUser] = useState<{id:number,role:string,email:string,firstName:string,lastName:string,company:string}>({id:0,role:'',email:'',firstName:'',lastName:'',company:''});
 
-    const refreshUser = async () => {
-        const res = await UserService.getUser(user.id);
-        const data = await res.data;
-        setUser(prev => ({...prev,...data}));
-        console.log('user',user);
-    }
-
     useEffect(() => {
         const fetchData = async () => {
             setLoading(true);
@@ -47,16 +40,11 @@ const Profile = () => {
         console.log('test',Object.keys(user));
     },[]);
 
-    useEffect(() => {
-
-    },[user])
-    
     return (
-        <Box display='flex' justifyContent={'center'}>
-            <ProfileSidebar user={user}/>
-            <Box display='flex' sx={{ justifyContent:'start',alignItems:'center', backgroundColor:'pink', padding:'1%', marginX:'10%'}}>
+        <Box display='flex'>
+            <Box display='flex' sx={{ justifyContent:'start',alignItems:'center', backgroundColor:'pink', padding:'1%'}}>
                 <Box display='flex' flexDirection='column' ml={3}>
-                    {!loading && <ProfileDisplay user={user} loading={loading} refreshUser={refreshUser}/>}
+                    {!loading && <ProfileDisplay user={user} loading={loading}/>}
                 </Box>
             </Box>
         </Box>

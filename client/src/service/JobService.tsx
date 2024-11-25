@@ -17,6 +17,10 @@ class JobService {
         return axios.get(base+`/jobs/${field}`, {headers:{'Content-Type':'application.json'}});
     }
 
+    create(body:any) {
+        return axios.post(base+'/jobs/create', body, {headers:{'Content-Type':'application/json'}, withCredentials:true});
+    }
+
 }
 
 export default new JobService();

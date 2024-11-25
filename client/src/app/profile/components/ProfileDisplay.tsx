@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import UserService from "@/service/UserService";
 
 
-const ProfileDisplay = ( {user, loading, refreshUser} : {user:any, loading:boolean, refreshUser: any}) => {
+const ProfileDisplay = ( {user, loading} : {user:any, loading:boolean}) => {
 
     const [isDisabled, setIsDisabled] = useState(true);
     const [name, setName] = useState<string>(`${user.firstName} ${user?.lastName}`);

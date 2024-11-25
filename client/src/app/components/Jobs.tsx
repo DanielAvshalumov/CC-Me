@@ -27,6 +27,8 @@ const Jobs = ({jobs}:{jobs: Job[]}) => {
             return `${usePathname()}?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}`;
         }
     }
+
+    console.log(jobs)
     
     const jobElement = jobs.map((job:Job,key: number) => {
 
