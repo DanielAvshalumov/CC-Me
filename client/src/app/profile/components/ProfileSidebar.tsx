@@ -41,8 +41,7 @@ const ProfileSidebar = () => {
             <Typography variant='h3'>{name}</Typography>
             <Button variant='outlined' sx={{width:'120px'}}><Link href="/profile">Profile</Link></Button>
             <Button variant='outlined' sx={{width:'120px'}} ><Link href="/profile/jobs">Jobs</Link></Button>
-            <Button variant='outlined' sx={{width:'120px'}}><Link href="/profile/contracts">Settings</Link></Button>
-            {con && <Button variant='outlined' sx={{width:'120px'}}>Contracts</Button>}
+            {con && <Button variant='outlined' sx={{width:'120px'}}><Link href="/profile/contracts">Contracts</Link></Button>}
         </Box>
     )
 }
