@@ -15,16 +15,17 @@ export interface Job {
     location: string;
     views: number;
     ccs: number;
-    description: string
+    description: string;
+    applicants: number[];
 }
 
 const Jobs = ({jobs}:{jobs: Job[]}) => {
 
     const link = (job: any) => {
         if (!usePathname().includes('contracts')) {
-            return `/contracts?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}`;
+            return `/contracts?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}&id=${job.id}`;
         } else {
-            return `${usePathname()}?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}`;
+            return `${usePathname()}?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}&id=${job.id}`;
         }
     }
 
@@ -46,7 +47,7 @@ const Jobs = ({jobs}:{jobs: Job[]}) => {
                             }
                             secondary={
                             <>
-                                <b>Company</b> - {`${job.company}`}<br /><b>Views</b> - {`${job.views}`}<br /><b>Location</b> - {`${job.location}`}<br/><b>CC's</b> - ${job.ccs}
+                                <b>Company</b> - {`${job.company}`}<br /><b>Views</b> - {`${job.views}`}<br /><b>Location</b> - {`${job.location}`}<br/><b>CC's</b> - {job.applicants.length}
                             </>}
                         />
                     </ListItem>     
