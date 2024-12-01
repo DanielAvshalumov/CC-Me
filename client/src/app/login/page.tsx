@@ -10,7 +10,7 @@ const Login = () => {
     return (
         <>
             <Form/>
-            {/* <Register /> */}
+            <Register />
         </>
     )
 }
