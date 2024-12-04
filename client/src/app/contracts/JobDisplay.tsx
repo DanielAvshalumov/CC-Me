@@ -1,12 +1,11 @@
 'use client'
 import JobService from "@/service/JobService";
-import { Avatar, Box, Button, Paper, Typography } from "@mui/material"
+import { Avatar, AvatarGroup, Box, Button, Paper, Typography } from "@mui/material"
 import { useSearchParams } from "next/navigation"
 import { useState } from "react";
 
 const JobHero = ({jobs}:any) => {
 
-    const [jobId, setJobId] = useState<number>(0);
 
     const searchParameters = useSearchParams();
     const params = searchParameters.entries().toArray();
@@ -23,8 +22,8 @@ const JobHero = ({jobs}:any) => {
     const applicantsElement = () => {
         const job = jobs?.filter((job:any) => job.id === +params[5][1]);
         console.log(job);
-        return job[0].applicants?.map((job:any) => (
-            <Avatar>{job}</Avatar>
+        return job[0].applicants?.map((job:any, key:any) => (
+            <Avatar key={key}>{job}</Avatar>
         ))
     }
 
@@ -43,7 +42,11 @@ const JobHero = ({jobs}:any) => {
                     <Typography variant="h3">{params[1][1]}</Typography>
                     <Typography variant="body2">{params[4][1]}</Typography>
                     <Button variant="contained" sx={{ marginTop: '15px'}} onClick={handleApply}>CC`Me</Button>
-                    {params[5][1] && applicantsElement()}
+                    <div style={{ display:'flex'}}>
+                        <AvatarGroup max={2}>
+                            {params[5][1] && applicantsElement()}
+                        </AvatarGroup>
+                    </div>
                 </Box>
                 <Box display='flex' flexDirection='column' width={1000} padding={5} sx={{marginTop:'300px'}}>
                     <Typography variant="subtitle1"><i>Location</i> - {params[2][1]}</Typography>

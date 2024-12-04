@@ -2,13 +2,35 @@
 import Jobs from "@/app/components/Jobs";
 import AuthService from "@/service/AuthService";
 import JobService from "@/service/JobService";
-import { Box, Button, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Button, IconButton, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Popover, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
+import NavigateNextIcon from '@mui/icons-material/NavigateNext';
+import contractorAvatar from "../../public/images/avatar/avatar-1300331_1280.png";
+import { Edit, Delete } from '@mui/icons-material';
+import CheckIcon from '@mui/icons-material/Check';
 
 
 const ContractsPage = () => {
 
+    const [anchorEl, setAnchorEl] = useState(null);
+  
+    // Open the popover when the avatar is clicked
+    const handleClick = (event) => {
+      setAnchorEl(event.currentTarget);
+    };
+  
+    // Close the popover when clicked outside
+    const handleClose = () => {
+      setAnchorEl(null);
+    };
+  
+    // Check if popover is open
+    const open = Boolean(anchorEl);
+
+    //
+
     const [view, setView] = useState(false);
+    const [id, setId] = useState<number>();
 
     const [jobForm, setJobForm] = useState({
         company:'',
@@ -49,14 +71,64 @@ const ContractsPage = () => {
             setLoading(true);
             const _res = await AuthService.getSession();
             const id = await _res.data.id;
+            setId(id);
             const res = await JobService.getJobsByUser(id);
             const jobs = await res.data;
-            console.log('jobs',res); 
             setJobs(jobs); 
             setLoading(false);
         }
         fetchData();
     },[])
+
+    console.log(jobs);
+
+    const jobsElement = jobs.map(job => 
+        
+    
+
+            <Box display='flex' flexDirection='column'>
+                <Typography variant="h4">{job.field}</Typography>
+                <div style={{display:'flex'}}>
+                {job?.applicants?.map(app => (
+                    <>
+                    <Avatar onClick={handleClick} sx={{cursor:'pointer'}}>{app}</Avatar>
+                    <Popover
+        open={open}
+        anchorEl={anchorEl}
+        onClose={handleClose}
+        anchorOrigin={{
+          vertical: 'bottom',
+          horizontal: 'center',
+        }}
+        transformOrigin={{
+          vertical: 'top',
+          horizontal: 'center',
+        }}
+        sx={{
+          padding: '8px',
+          borderRadius: '10px',
+          maxWidth: '200px',
+        }}
+      >
+        <div style={{ display: 'flex', flexDirection: 'column' }}>
+          {/* Icon Buttons inside the popover */}
+          <IconButton onClick={handleClose} aria-label="chat">
+            <CheckIcon />
+          </IconButton>
+          <IconButton onClick={handleClose} aria-label="edit">
+            <Edit />
+          </IconButton>
+          <IconButton onClick={handleClose} aria-label="delete">
+            <Delete />
+          </IconButton>
+        </div>
+      </Popover>
+                    </>
+                ))}
+                </div>
+            </Box>
+        
+    );
 
     return (
         <div>
@@ -82,7 +154,7 @@ const ContractsPage = () => {
                 <Button variant="contained" onClick={handleSubmit}>Create Job</Button>
             </Box> :
             <div style={{display:'flex',flexDirection:'column'}}>
-                <Jobs jobs={jobs} />
+            {!loading && jobsElement}
             </div>}
             <Button onClick={() => {setView(prev=>!prev)}}>Turn</Button>
         </div>

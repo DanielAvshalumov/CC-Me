@@ -21,11 +21,13 @@ export interface Job {
 
 const Jobs = ({jobs}:{jobs: Job[]}) => {
 
+    const path = usePathname();
+
     const link = (job: any) => {
-        if (!usePathname().includes('contracts')) {
+        if (!path.includes('contracts')) {
             return `/contracts?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}&id=${job.id}`;
         } else {
-            return `${usePathname()}?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}&id=${job.id}`;
+            return `${path}?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}&id=${job.id}`;
         }
     }
 

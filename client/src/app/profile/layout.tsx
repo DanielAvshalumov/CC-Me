@@ -7,11 +7,7 @@ const profileLayout = async ({
     children: React.ReactNode
   }) => {
 
-    const user = {
-        firstName: "daniel",
-        lastName: "avsh"
-    }
-
+    
     return (
             <div style={{display:'flex', justifyContent:'space-around', alignItems:'center'}}>
                 <ProfileSidebar/>

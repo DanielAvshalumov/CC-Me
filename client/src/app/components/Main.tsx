@@ -21,10 +21,10 @@ const Main = async () => {
     console.log(workers);
 
     const contractorElement = workers.map((contractor: {
-        "name": string;
-        "field": string[];
+        "firstName": string;
+        "jobs": string[];
         "rating": number;
-        "jobs" : number;
+        "company" : number;
     }) => 
         <ListItemButton>
             <ListItem>
