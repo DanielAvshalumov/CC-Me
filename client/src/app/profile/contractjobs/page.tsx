@@ -8,6 +8,13 @@ import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import contractorAvatar from "../../public/images/avatar/avatar-1300331_1280.png";
 import { Edit, Delete } from '@mui/icons-material';
 import CheckIcon from '@mui/icons-material/Check';
+import ApplicantService from "@/service/ApplicantService";
+
+enum Decision {
+    UNDECIDED,
+    MAYBE,
+    ACCEPTED
+}
 
 
 const ContractsPage = () => {
@@ -15,7 +22,7 @@ const ContractsPage = () => {
     const [anchorEl, setAnchorEl] = useState(null);
   
     // Open the popover when the avatar is clicked
-    const handleClick = (event) => {
+    const handleClick = (event:any) => {
       setAnchorEl(event.currentTarget);
     };
   
@@ -65,6 +72,14 @@ const ContractsPage = () => {
 
     const [jobs, setJobs] = useState([{}]);
     const [loading, setLoading] = useState<boolean>(false);
+    const [applicantId, setApplicantId] = useState<number>();
+
+    const decideMaybe = async (e:any) => {
+        console.log(applicantId);
+        const res = await ApplicantService.decideMaybe(applicantId,Decision.MAYBE);
+        const data = res.data;
+        console.log(data);
+    }
 
     useEffect(()=> {
         const fetchData = async () => {
@@ -74,24 +89,39 @@ const ContractsPage = () => {
             setId(id);
             const res = await JobService.getJobsByUser(id);
             const jobs = await res.data;
-            setJobs(jobs); 
+            // setJobs(jobs); 
+            jobs.forEach( async (item:any) => {
+                const res = await ApplicantService.getApplicantsByJob(item.id);
+                const data = await res.data;
+                item.applicants = data;
+                setJobs(prev => ([
+                    ...(prev.filter((el:any) => el.id !== item.id)),
+                    {
+                        ...item,
+                        applicants: data
+                    }
+                ]))
+            });
             setLoading(false);
         }
         fetchData();
     },[])
 
-    console.log(jobs);
-
-    const jobsElement = jobs.map(job => 
+    const jobsElement = jobs.map((job:any) => 
         
     
 
             <Box display='flex' flexDirection='column'>
                 <Typography variant="h4">{job.field}</Typography>
                 <div style={{display:'flex'}}>
-                {job?.applicants?.map(app => (
+                {job?.applicants?.map((app:any) => (
                     <>
-                    <Avatar onClick={handleClick} sx={{cursor:'pointer'}}>{app}</Avatar>
+                    <Avatar onClick={(event:any) => 
+                    {
+                        setAnchorEl(event.currentTarget);
+                        setApplicantId(app.id);
+                    }} sx={{cursor:'pointer'}}>{app.sender.firstName[0]}
+                    </Avatar>
                     <Popover
         open={open}
         anchorEl={anchorEl}
@@ -115,8 +145,8 @@ const ContractsPage = () => {
           <IconButton onClick={handleClose} aria-label="chat">
             <CheckIcon />
           </IconButton>
-          <IconButton onClick={handleClose} aria-label="edit">
-            <Edit />
+          <IconButton  onClick={decideMaybe} aria-label="edit">
+            <Edit id={app.id}/>
           </IconButton>
           <IconButton onClick={handleClose} aria-label="delete">
             <Delete />

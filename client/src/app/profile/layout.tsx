@@ -7,7 +7,6 @@ const profileLayout = async ({
     children: React.ReactNode
   }) => {
 
-    
     return (
             <div style={{display:'flex', justifyContent:'space-around', alignItems:'center'}}>
                 <ProfileSidebar/>

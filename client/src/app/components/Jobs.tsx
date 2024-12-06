@@ -16,7 +16,6 @@ export interface Job {
     views: number;
     ccs: number;
     description: string;
-    applicants: number[];
 }
 
 const Jobs = ({jobs}:{jobs: Job[]}) => {
@@ -49,7 +48,7 @@ const Jobs = ({jobs}:{jobs: Job[]}) => {
                             }
                             secondary={
                             <>
-                                <b>Company</b> - {`${job.company}`}<br /><b>Views</b> - {`${job.views}`}<br /><b>Location</b> - {`${job.location}`}<br/><b>CC's</b> - {job.applicants?.length}
+                                <b>Company</b> - {`${job.company}`}<br /><b>Views</b> - {`${job.views}`}<br /><b>Location</b> - {`${job.location}`}<br/>
                             </>}
                         />
                     </ListItem>     
