@@ -32,7 +32,7 @@ const Jobs = ({jobs}:{jobs: Job[]}) => {
 
     console.log(jobs)
     
-    const jobElement = jobs.map((job:Job,key: number) => {
+    const jobElement = jobs?.map((job:Job,key: number) => {
 
                 return (
                 <ListItemButton key={key}>

@@ -34,7 +34,9 @@ class JobService {
         return axios.post(base+`/jobs/apply/${id}`, {headers:{'Content-Type':'application/json'}, withCredentials:true});
     }
 
-
+    getAppliedJobs(id:number) {
+        return axios.get(base+`/jobs/sender/${id}`, {headers:{'Content-Type':'application/json'}, withCredentials:true});
+    } 
 }
 
 export default new JobService();

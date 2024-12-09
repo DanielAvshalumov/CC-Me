@@ -37,7 +37,6 @@ const ContractsPage = () => {
     //
 
     const [view, setView] = useState(false);
-    const [id, setId] = useState<number>();
 
     const [jobForm, setJobForm] = useState({
         company:'',
@@ -70,15 +69,40 @@ const ContractsPage = () => {
         }
     }
 
-    const [jobs, setJobs] = useState([{}]);
+    const [jobs, setJobs] = useState<any>([]);
     const [loading, setLoading] = useState<boolean>(false);
     const [applicantId, setApplicantId] = useState<number>();
 
-    const decideMaybe = async (e:any) => {
-        console.log(applicantId);
-        const res = await ApplicantService.decideMaybe(applicantId,Decision.MAYBE);
-        const data = res.data;
+    const decide = async (e:any) => {
+        e.stopPropagation();
+        setLoading(true);
+        const decision = e.target.id;
+        console.log(decision)
+        const res = await ApplicantService.decideMaybe(applicantId,decision);
+        const data = await res.data;
+        const newJobs = jobs.map((job:any) => {
+            for(let i = 0; i < job.applicants.length; i++) {
+            const app = job.applicants[i];
+                if(applicantId === app.id) {
+                    return {
+                        ...job,
+                        applicants: [...job.applicants.filter((_app:any) => _app.id !== app.id),{
+                            sender: app.sender,
+                            contractor: app.contractor,
+                            created_at: app.created_at,
+                            id: app.id,
+                            decision: `${decision}`
+                        }]
+                    }
+                }
+            }
+            return job;
+        });
+        console.log('newjobs',newJobs);
+        setJobs(newJobs);
         console.log(data);
+        handleClose();
+        setLoading(false);
     }
 
     useEffect(()=> {
@@ -86,16 +110,14 @@ const ContractsPage = () => {
             setLoading(true);
             const _res = await AuthService.getSession();
             const id = await _res.data.id;
-            setId(id);
             const res = await JobService.getJobsByUser(id);
             const jobs = await res.data;
-            // setJobs(jobs); 
             jobs.forEach( async (item:any) => {
                 const res = await ApplicantService.getApplicantsByJob(item.id);
                 const data = await res.data;
-                item.applicants = data;
-                setJobs(prev => ([
-                    ...(prev.filter((el:any) => el.id !== item.id)),
+                item.applicants = data; // I dont know if this makes it work or not but I dont think it does
+                setJobs((prev:any) => ([
+                    ...prev.filter((el:any) => el.id !== item.id),
                     {
                         ...item,
                         applicants: data
@@ -105,60 +127,120 @@ const ContractsPage = () => {
             setLoading(false);
         }
         fetchData();
+        console.log('after',jobs);
     },[])
 
-    const jobsElement = jobs.map((job:any) => 
+    const jobsElement = jobs.map((job:any) => {
         
+        const undecided : any = [];
+        const maybe : any = [];
+
+        for(const app of job?.applicants)
+         {
+            if(app.decision === "MAYBE") {
+                maybe.push(
+                    <>
+                        <Avatar onClick={(event:any) => 
+                        {
+                            setAnchorEl(event.currentTarget);
+                            setApplicantId(app.id);
+                        }} sx={{cursor:'pointer'}}>{app.sender.firstName[0]}
+                         </Avatar>
+                        <Popover
+                            open={open}
+                            anchorEl={anchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center',
+                            }}
+                            transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center',
+                            }}
+                            sx={{
+                            padding: '8px',
+                            borderRadius: '10px',
+                            maxWidth: '200px',
+                            }}
+                        >
+                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <Button id={"ACCEPTED"} onClick={decide} aria-label="chat">
+                                Accept
+                            </Button>
+                            <Button id={"MAYBE"} onClick={decide} aria-label="edit">
+                                Maybe
+                            </Button>
+                            <IconButton onClick={handleClose} aria-label="delete">
+                                <Delete />
+                            </IconButton>
+                            </div>
+                        </Popover>
+                    </>
+                )
+            } else if(app.decision === "UNDECIDED"){
+                undecided.push(
+                    <>
+                        <Avatar onClick={(event:any) => 
+                        {
+                            setAnchorEl(event.currentTarget);
+                            setApplicantId(app.id);
+                        }} sx={{cursor:'pointer'}}>{app.sender.firstName[0]}
+                         </Avatar>
+                        <Popover
+                            open={open}
+                            anchorEl={anchorEl}
+                            onClose={handleClose}
+                            anchorOrigin={{
+                            vertical: 'bottom',
+                            horizontal: 'center',
+                            }}
+                            transformOrigin={{
+                            vertical: 'top',
+                            horizontal: 'center',
+                            }}
+                            sx={{
+                            padding: '8px',
+                            borderRadius: '10px',
+                            maxWidth: '200px',
+                            }}
+                        >
+                            <div style={{ display: 'flex', flexDirection: 'column' }}>
+                            <Button id={"ACCEPTED"} onClick={decide} aria-label="chat">
+                                Accept
+                            </Button>
+                            <Button id={"MAYBE"} onClick={decide} aria-label="edit">
+                                Maybe
+                            </Button>
+                            <IconButton onClick={handleClose} aria-label="delete">
+                                <Delete />
+                            </IconButton>
+                            </div>
+                        </Popover>
+                    </>
+                )
+            } else {
+                return null;
+            }
+        }
     
 
+        return (
             <Box display='flex' flexDirection='column'>
-                <Typography variant="h4">{job.field}</Typography>
-                <div style={{display:'flex'}}>
-                {job?.applicants?.map((app:any) => (
-                    <>
-                    <Avatar onClick={(event:any) => 
-                    {
-                        setAnchorEl(event.currentTarget);
-                        setApplicantId(app.id);
-                    }} sx={{cursor:'pointer'}}>{app.sender.firstName[0]}
-                    </Avatar>
-                    <Popover
-        open={open}
-        anchorEl={anchorEl}
-        onClose={handleClose}
-        anchorOrigin={{
-          vertical: 'bottom',
-          horizontal: 'center',
-        }}
-        transformOrigin={{
-          vertical: 'top',
-          horizontal: 'center',
-        }}
-        sx={{
-          padding: '8px',
-          borderRadius: '10px',
-          maxWidth: '200px',
-        }}
-      >
-        <div style={{ display: 'flex', flexDirection: 'column' }}>
-          {/* Icon Buttons inside the popover */}
-          <IconButton onClick={handleClose} aria-label="chat">
-            <CheckIcon />
-          </IconButton>
-          <IconButton  onClick={decideMaybe} aria-label="edit">
-            <Edit id={app.id}/>
-          </IconButton>
-          <IconButton onClick={handleClose} aria-label="delete">
-            <Delete />
-          </IconButton>
-        </div>
-      </Popover>
-                    </>
-                ))}
+                <Typography variant="h4">{job?.field}</Typography>
+                <div style={{display:'flex', flexDirection:'column'}}>
+                    <Typography variant="h6">Undecided</Typography>
+                    <div style={{display:'flex'}}>
+                        {!loading && undecided}
+                    </div>
+                    <Typography variant="h6">Maybe</Typography>
+                    <div style={{display:'flex'}}>
+                        {!loading && maybe}
+                    </div>
                 </div>
             </Box>
-        
-    );
+        )
+    });
 
     return (
         <div>

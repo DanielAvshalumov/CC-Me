@@ -2,11 +2,10 @@
 import AuthService from "@/service/AuthService";
 import JobService from "@/service/JobService";
 import { Avatar, Box, Button, Typography } from "@mui/material";
-import { useEffect, useState } from "react";
+import { createContext, useEffect, useState } from "react";
 import ProfileDisplay from "./components/ProfileDisplay";
 import ProfileSidebar from "./components/ProfileSidebar";
 import UserService from "@/service/UserService";
-
 
 const Profile = () => {
 
