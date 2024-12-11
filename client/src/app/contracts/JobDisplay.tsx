@@ -5,9 +5,11 @@ import UserService from "@/service/UserService";
 import { Avatar, AvatarGroup, Box, Button, Paper, Typography } from "@mui/material"
 import { useSearchParams } from "next/navigation"
 import { useEffect, useState } from "react";
+import { useJobContext } from "./provider";
 
-const JobHero = ({jobs}:any) => {
+const JobHero = () => {
 
+    const { jobs } : any = useJobContext();
 
     const searchParameters = useSearchParams();
     const params = searchParameters.entries().toArray();
@@ -31,7 +33,7 @@ const JobHero = ({jobs}:any) => {
         <Paper>
             <Box display={'flex'} flexDirection={'column'}>
                 <Box display='flex' flexDirection='column' width={1000} padding={5} alignItems='start'>
-                    <Typography variant="h2">{params[0][1]}</Typography>
+                    <Typography variant="h2"></Typography>
                     <Typography variant="h3">{params[1][1]}</Typography>
                     <Typography variant="body2">{params[4][1]}</Typography>
                     <Button variant="contained" sx={{ marginTop: '15px'}} onClick={handleApply}>CC`Me</Button>

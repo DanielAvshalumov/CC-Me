@@ -17,11 +17,11 @@ const Contracts = async () => {
     // const data = getItem('init');
     const res = await JobService.getAllJobs();
     const data = await res.data;
-    
+    const jobs = data.filter((job:any) => job.status === "INCOMPLETE");
     
     return (
         <Suspense fallback={<p>Loading feed</p>}>
-            <JobDetails jobs={data}/>
+            <JobDetails jobs={jobs}/>
         </Suspense>
     )
 }

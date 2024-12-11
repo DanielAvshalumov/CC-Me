@@ -26,15 +26,18 @@ const ProfileJobs = () => {
         console.log(jobs);
     },[jobs]);
 
+    const completedJobs = jobs?.filter((job:any) => job.status === "ONGOING");
+
     return (
         <div style={{display:'flex',flexDirection:'column'}}>
-            <Typography variant="h2">Current Jobs</Typography>
+            <Typography variant="h2">Applied Jobs</Typography>
             {!loading &&
-            // <Suspense>
                 <Jobs jobs={jobs}/>
-            // </Suspense>
             }
             <Typography variant="h2">Completed Jobs</Typography>
+            {!loading &&
+                <Jobs jobs={completedJobs}/>
+            }
         </div>
     )
 }
