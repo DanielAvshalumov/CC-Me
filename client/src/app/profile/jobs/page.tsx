@@ -26,17 +26,17 @@ const ProfileJobs = () => {
         console.log(jobs);
     },[jobs]);
 
-    const completedJobs = jobs?.filter((job:any) => job.status === "ONGOING");
+    const ongoingJobs = jobs?.filter((job:any) => job.status === "ONGOING");
 
     return (
         <div style={{display:'flex',flexDirection:'column'}}>
             <Typography variant="h2">Applied Jobs</Typography>
             {!loading &&
-                <Jobs jobs={jobs}/>
+                <Jobs jobs={jobs?.filter((job:any) => job.status === "INCOMPLETE")}/>
             }
-            <Typography variant="h2">Completed Jobs</Typography>
+            <Typography variant="h2">Ongoing</Typography>
             {!loading &&
-                <Jobs jobs={completedJobs}/>
+                <Jobs jobs={ongoingJobs}/>
             }
         </div>
     )

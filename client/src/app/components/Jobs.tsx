@@ -30,6 +30,7 @@ const Jobs = ({jobs}:{jobs: Job[]}) => {
         }
     }
 
+
     console.log(jobs)
     
     const jobElement = jobs?.map((job:Job,key: number) => {
@@ -48,12 +49,15 @@ const Jobs = ({jobs}:{jobs: Job[]}) => {
                             }
                             secondary={
                             <>
-                                <b>Company</b> - {`${job.company}`}<br /><b>Views</b> - {`${job.views}`}<br /><b>Location</b> - {`${job.location}`}<br/>
+                                <b>Company</b> - {`${job.company}`}<br />
+                                <b>Views</b> - {`${job.views}`}<br />
+                                <b>Location</b> - {`${job.location}`}<br/>
+                                <b>Owner</b> - {`${job.owner.firstName}`}<br/>
                             </>}
                         />
                     </ListItem>     
                     <ListItemIcon style={{marginLeft:'auto'}}>
-                        <Link href={link(job)}>
+                        <Link href={link(job) }>
                             <NavigateNextIcon onClick={(e)=>{console.log()}}/>
                         </Link>
                     </ListItemIcon>

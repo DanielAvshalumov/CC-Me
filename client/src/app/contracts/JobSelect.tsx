@@ -26,10 +26,11 @@ const JobSelect = ({jobs}: {jobs:Job[]}) => {
 
     return (
             <List sx={{ marginTop:'50px'}}>
-                {optionList.map(value => {
-                    const label = value;
+                {jobs.map(value => {
+                    const label = value.field;
                     const path = decodeURI(usePathname());
                     return (
+                        value.status === "INCOMPLETE" &&
                         <Link key={label} href={`${path}/${label}/?${searchParams.toString()}`}>
                             <ListItemButton sx={{ background:'pink', borderRadius:'10px', marginBottom:'10px' }}>
                                     <Checkbox 

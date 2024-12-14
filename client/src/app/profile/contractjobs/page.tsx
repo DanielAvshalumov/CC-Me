@@ -2,7 +2,7 @@
 import Jobs from "@/app/components/Jobs";
 import AuthService from "@/service/AuthService";
 import JobService from "@/service/JobService";
-import { Avatar, Box, Button, IconButton, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, Popover, TextField, Typography } from "@mui/material";
+import { Avatar, Box, Button, IconButton, Input, ListItem, ListItemAvatar, ListItemButton, ListItemIcon, ListItemText, MenuItem, Popover, Select, TextField, Typography } from "@mui/material";
 import { useEffect, useState } from "react";
 import NavigateNextIcon from '@mui/icons-material/NavigateNext';
 import contractorAvatar from "../../public/images/avatar/avatar-1300331_1280.png";
@@ -10,11 +10,12 @@ import { Edit, Delete } from '@mui/icons-material';
 import CheckIcon from '@mui/icons-material/Check';
 import ApplicantService from "@/service/ApplicantService";
 
-enum Decision {
-    UNDECIDED,
+enum paymentType {
+    HOURLY,
     MAYBE,
     ACCEPTED
 }
+
 
 
 const ContractsPage = () => {
@@ -42,7 +43,10 @@ const ContractsPage = () => {
         company:'',
         field:'',
         location:'',
-        description:''
+        description:'',
+        amountRangeStart:0,
+        amountRangeEnd:0,
+        paymentType: ''
     });
 
     const handleChange = (e:any) => {
@@ -60,7 +64,17 @@ const ContractsPage = () => {
     },[jobForm]);
 
     const handleSubmit = async () => {
-        const res = await JobService.create(jobForm);
+        const res = await JobService.create(
+            {
+                ...jobForm,
+                payment: {
+                    paymentType: jobForm.paymentType,
+                    currency: 'USD',
+                    amountRangeStart: +jobForm.amountRangeStart,
+                    amountRangeEnd: +jobForm.amountRangeEnd
+                }
+            }
+        );
         const data = res.data;
         if(res.status == 200) {
             console.log(data);
@@ -261,7 +275,29 @@ const ContractsPage = () => {
                 </div>
                 <div style={{ display:'flex', alignItems:'center'}}>
                     <Typography variant="h4">Description: </Typography>
-                    <TextField id='description' value={jobForm.description} multiline fullWidth rows={10} onChange={handleChange}/>
+                    <TextField id='description' value={jobForm.description} multiline fullWidth onChange={handleChange}/>
+                </div>
+                <div style={{ display:'flex', alignItems:'center'}}>
+                    <Typography variant="h4">Start Range: </Typography>
+                    <Input id='amountRangeStart' value={jobForm.amountRangeStart} onChange={handleChange} type='number'/>
+                </div>
+                <div style={{ display:'flex', alignItems:'center'}}>
+                    <Typography variant="h4">End Range: </Typography>
+                    <TextField id='amountRangeEnd' value={jobForm.amountRangeEnd} onChange={handleChange}/>
+                </div>
+                <div style={{ display:'flex', alignItems:'center'}}>
+                    <Typography variant="h4">Occurrence: </Typography>
+                    <Select
+                        labelId="demo-simple-select-label"
+                        id="demo-simple-select"
+                        label="Age"
+                        onChange={(e)=> {setJobForm(prev => ({...prev,paymentType:e.target.value}))}}
+                    >
+                        <MenuItem value={"HOURLY"}>Hourly</MenuItem>
+                        <MenuItem value={"WEEKLY"}>Weekly</MenuItem>
+                        <MenuItem value={"YEARLY"}>Yearly</MenuItem>
+                        <MenuItem value={"LUMP"}>Lump</MenuItem>
+                    </Select>
                 </div>
                 <Button variant="contained" onClick={handleSubmit}>Create Job</Button>
             </Box> :

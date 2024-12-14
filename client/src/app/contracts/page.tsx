@@ -12,12 +12,9 @@ import {preload, getItem} from './utils';
 
 const Contracts = async () => {
 
-
-    preload('init');
-    // const data = getItem('init');
     const res = await JobService.getAllJobs();
-    const data = await res.data;
-    const jobs = data.filter((job:any) => job.status === "INCOMPLETE");
+    const jobs = res.data;
+
     
     return (
         <Suspense fallback={<p>Loading feed</p>}>

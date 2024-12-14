@@ -11,6 +11,7 @@ export function useJobContext() {
 export default function JobProvider({ children } : {children:any}) {
 
     const [jobs, setJobs] = useState();
+    const [job, setJob] = useState();
     const [loading, setLoading] = useState(true);
 
     useEffect(() => {
@@ -24,7 +25,9 @@ export default function JobProvider({ children } : {children:any}) {
     },[]);
 
     const value = {
-        jobs
+        jobs,
+        job,
+        setJob
     }
 
     return (
