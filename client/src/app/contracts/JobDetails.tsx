@@ -10,6 +10,8 @@ import JobHero from "./JobDisplay";
 
 const JobDetails = ({ jobs } : {jobs:any}) => {
 
+    const [job, setJob] = useState();
+    console.log(jobs);
 
     return (
         <Box display='flex' style={{width:'95%', margin:'30px'}}>
@@ -21,7 +23,7 @@ const JobDetails = ({ jobs } : {jobs:any}) => {
                         </List>
                 </Box>
             </Paper>
-            <JobHero job={jobs} />
+            <JobHero _job={jobs} />
         </Box>
     )
 }

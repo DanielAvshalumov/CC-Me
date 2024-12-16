@@ -2,6 +2,7 @@ import { CssBaseline } from '@mui/material'
 import { AppRouterCacheProvider } from '@mui/material-nextjs/v14-appRouter'
 import Header from './components/header'
 import './globals.css';
+import JobProvider from './contracts/provider';
 
 export const metadata = {
   title: 'Next.js',
@@ -18,8 +19,10 @@ export default function RootLayout({
       <AppRouterCacheProvider>
         <CssBaseline />
         <body>
+        <JobProvider>
           <Header />
             {children}
+        </JobProvider>
         </body>
       </AppRouterCacheProvider>
     </html>

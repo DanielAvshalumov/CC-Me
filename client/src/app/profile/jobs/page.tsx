@@ -17,7 +17,14 @@ const ProfileJobs = () => {
         const fetchData = async () => {
             const res = await JobService.getAppliedJobs(currentUser.id);
             const data = await res.data;
-            setJobs(data);
+            setJobs(data.map((job:any) => ({
+                field: job[1],
+                company: job[2],
+                location: job[3],
+                decision: job[4],
+                status: job[5],
+                owner: job[6]
+            })));
         }
         fetchData();
     },[]);
@@ -26,7 +33,7 @@ const ProfileJobs = () => {
         console.log(jobs);
     },[jobs]);
 
-    const ongoingJobs = jobs?.filter((job:any) => job.status === "ONGOING");
+    const ongoingJobs = jobs?.filter((job:any) => job.status === "ONGOING" && job.decision === "ACCEPTED");
 
     return (
         <div style={{display:'flex',flexDirection:'column'}}>

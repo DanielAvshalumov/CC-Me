@@ -90,7 +90,7 @@ const Main = async () => {
                     <Typography variant="h5">Jobs</Typography>
                     <List>
                         <Suspense fallback={<p>Loading feed</p>}>
-                            <Jobs jobs={jobs}/>
+                            <Jobs jobs={jobs.filter((job:any) => job.status === "INCOMPLETE")}/>
                         </Suspense>
                     </List>
                 </Box>

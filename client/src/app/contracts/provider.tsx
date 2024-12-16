@@ -24,10 +24,19 @@ export default function JobProvider({ children } : {children:any}) {
         fetchJobs();
     },[]);
 
+    const changeJob = (job:any) => {
+        setLoading(true);
+        setJob(job);
+        setLoading(false);
+    }
+
     const value = {
         jobs,
         job,
-        setJob
+        setJob,
+        loading,
+        setLoading,
+        changeJob
     }
 
     return (

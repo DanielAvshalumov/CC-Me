@@ -8,6 +8,7 @@ import React from "react";
 import JobService from "@/service/JobService";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { useJobContext } from "../contracts/provider";
 
 export interface Job {
     field: string;
@@ -20,13 +21,23 @@ export interface Job {
 
 const Jobs = ({jobs}:{jobs: Job[]}) => {
 
+    const { changeJob } : any = useJobContext();
+
     const path = usePathname();
 
-    const link = (job: any) => {
-        if (!path.includes('contracts')) {
-            return `/contracts?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}&id=${job.id}`;
-        } else {
-            return `${path}?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}&id=${job.id}`;
+    // const link = (job: any) => {
+    //     if (!path.includes('contracts')) {
+    //         return `/contracts?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}&id=${job.id}`;
+    //     } else {
+    //         console.log('choesn job',job);
+    //         // changeJob(job);
+    //         return `${path}?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}&id=${job.id}`;
+    //     }
+    // }
+
+    const link = () => {
+        if(!path.includes('contracts')) {
+            return '/contracts'
         }
     }
 
@@ -52,13 +63,13 @@ const Jobs = ({jobs}:{jobs: Job[]}) => {
                                 <b>Company</b> - {`${job.company}`}<br />
                                 <b>Views</b> - {`${job.views}`}<br />
                                 <b>Location</b> - {`${job.location}`}<br/>
-                                <b>Owner</b> - {`${job.owner.firstName}`}<br/>
+                                <b>Owner</b> - {`${job?.owner}`}<br/>
                             </>}
                         />
                     </ListItem>     
                     <ListItemIcon style={{marginLeft:'auto'}}>
-                        <Link href={link(job) }>
-                            <NavigateNextIcon onClick={(e)=>{console.log()}}/>
+                        <Link href={{pathname:'/contracts'}}>
+                            <NavigateNextIcon onClick={(e)=>{changeJob(job)}}/>
                         </Link>
                     </ListItemIcon>
                 </ListItemButton>)
