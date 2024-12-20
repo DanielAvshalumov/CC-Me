@@ -17,30 +17,14 @@ export interface Job {
     views: number;
     ccs: number;
     description: string;
+    owner : {
+        firstName: string
+    }
 }
 
 const Jobs = ({jobs}:{jobs: Job[]}) => {
 
     const { changeJob } : any = useJobContext();
-
-    const path = usePathname();
-
-    // const link = (job: any) => {
-    //     if (!path.includes('contracts')) {
-    //         return `/contracts?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}&id=${job.id}`;
-    //     } else {
-    //         console.log('choesn job',job);
-    //         // changeJob(job);
-    //         return `${path}?field=${job.field}&company=${job.company}&location=${job.location}&views=${job.views}&description=${job.description}&id=${job.id}`;
-    //     }
-    // }
-
-    const link = () => {
-        if(!path.includes('contracts')) {
-            return '/contracts'
-        }
-    }
-
 
     console.log(jobs)
     
@@ -63,7 +47,7 @@ const Jobs = ({jobs}:{jobs: Job[]}) => {
                                 <b>Company</b> - {`${job.company}`}<br />
                                 <b>Views</b> - {`${job.views}`}<br />
                                 <b>Location</b> - {`${job.location}`}<br/>
-                                <b>Owner</b> - {`${job?.owner}`}<br/>
+                                <b>Owner</b> - {`${job?.owner?.firstName}`}<br/>
                             </>}
                         />
                     </ListItem>     
