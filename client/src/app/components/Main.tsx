@@ -29,7 +29,7 @@ const Main = async () => {
         <ListItemButton>
             <ListItem>
                 <ListItemAvatar>
-                    <Avatar alt='contractor' src={contractorAvatar.src}/>
+                    <Avatar alt='contractor' src={contractor.profilePictureUrl}/>
                 </ListItemAvatar>
                 <ListItemText
                     primary={

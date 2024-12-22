@@ -158,8 +158,8 @@ const ContractsPage = () => {
                         {
                             setAnchorEl(event.currentTarget);
                             setApplicantId(app.id);
-                        }} sx={{cursor:'pointer'}}>{app.sender.firstName[0]}
-                         </Avatar>
+                        }} sx={{cursor:'pointer'}}
+                            src={`${app.sender.profilePictureUrl}`}/>
                         <Popover
                             open={open}
                             anchorEl={anchorEl}
@@ -199,8 +199,8 @@ const ContractsPage = () => {
                         {
                             setAnchorEl(event.currentTarget);
                             setApplicantId(app.id);
-                        }} sx={{cursor:'pointer'}}>{app.sender.firstName[0]}
-                         </Avatar>
+                        }} sx={{cursor:'pointer'}}
+                           src={`${app.sender.profilePictureUrl}`}/>
                         <Popover
                             open={open}
                             anchorEl={anchorEl}
